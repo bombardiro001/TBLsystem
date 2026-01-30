@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -36,33 +39,29 @@ export default function RegisterPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-neutral-900">
       <div className="w-full max-w-sm rounded bg-white p-6 space-y-4">
-        <h1 className="text-2xl font-bold">Register</h1>
+        <Card className="w-full max-w-sm space-y-4">
+          <h1 className="text-2xl font-bold">Register</h1>
 
-        <input
-          className="w-full border p-2"
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          className="w-full border p-2"
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="text-red-600 text-sm">{error}</p>}
 
-        <button
-          onClick={register}
-          disabled={loading}
-          className="w-full bg-black py-2 text-white"
-        >
-          {loading ? "Creating account..." : "Register"}
-        </button>
+          <Button loading={loading} onClick={register}>
+            register
+          </Button>
+        </Card>
 
         <p className="text-sm text-center">
           Already have an account?{" "}

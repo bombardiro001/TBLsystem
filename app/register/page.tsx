@@ -32,38 +32,45 @@ export default function RegisterPage() {
       return;
     }
 
-    // optional: email confirmation may be required
     router.replace("/login");
   };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-neutral-900">
-      <div className="w-full max-w-sm rounded bg-white p-6 space-y-4">
-        <Card className="w-full max-w-sm space-y-4">
+      <div className="w-full max-w-sm">
+        <Card className="space-y-4">
           <h1 className="text-2xl font-bold">Register</h1>
 
-          <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <form
+            className="space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              register();
+            }}
+          >
+            <Input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+            {error && <p className="text-red-600 text-sm">{error}</p>}
 
-          <Button loading={loading} onClick={register}>
-            register
-          </Button>
+            <Button type="submit" loading={loading}>
+              Register
+            </Button>
+          </form>
         </Card>
 
-        <p className="text-sm text-center">
+        <p className="mt-4 text-sm text-center text-white">
           Already have an account?{" "}
           <a href="/login" className="underline">
             Login
